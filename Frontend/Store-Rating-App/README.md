@@ -9,7 +9,7 @@ Below are some images from the app (located in `src/assets/`):
 ![Change Password](src/assets/changepass.png)
 
 ### Login Page
-![Login Page](src/assets/loginPage.png)
+![Login Page](Frontend/Store-Rating-App/src/assets/loginPage.png)
 
 ### Store Page
 ![Store](src/assets/store.png)
