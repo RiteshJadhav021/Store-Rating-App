@@ -1,3 +1,4 @@
+
 # Screenshots & Images
 
 Below are some images from the app (located in `src/assets/`):
@@ -33,6 +34,28 @@ Store Rating App is a full-stack web application for rating stores and managing 
 - Rate stores and view ratings
 - Responsive, modern UI
 
+
+---
+
+## 🔑 Authentication API Endpoints
+
+| Endpoint                | Method | Description                                 |
+|-------------------------|--------|---------------------------------------------|
+| `/register`             | POST   | Register a new user or store owner          |
+| `/login`                | POST   | Login as admin, user, or store owner        |
+| `/update-password`      | POST   | Change password for logged-in user/owner    |
+
+---
+
+---
+## 🛡️ Security Notes
+
+- Admin login uses hardcoded credentials: `admin@store.com` / `Admin@123`.
+- Passwords are stored in the database (recommend hashing in production).
+- Passwords must be 8-16 chars, include 1 uppercase and 1 special character.
+
+---
+
 ## Project Structure
 
 ```
@@ -41,13 +64,6 @@ Backend/
 	 index.js        # Express backend API
 	 db.js           # MySQL connection
   package.json      # Backend dependencies
-# 🚀 Store Rating App
-
-![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)
-![Express](https://img.shields.io/badge/Express-4.18.2-000?logo=express)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql)
-![Vite](https://img.shields.io/badge/Vite-4.0-646CFF?logo=vite)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-38BDF8?logo=tailwindcss)
 
 ---
 
