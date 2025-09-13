@@ -1,4 +1,4 @@
-# Screenshots & Images
+# Screenshots
 
 Below are some images from the app (located in `src/assets/`):
 
