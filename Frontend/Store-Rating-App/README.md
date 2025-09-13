@@ -1,4 +1,4 @@
-
+Store Rating App
 # Screenshots & Images
 
 Below are some images from the app (located in `src/assets/`):
