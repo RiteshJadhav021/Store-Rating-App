@@ -1,4 +1,4 @@
-Store Rating App
+<h1>Store Rating App</h1>
 # Screenshots & Images
 
 Below are some images from the app (located in `src/assets/`):
