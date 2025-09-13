@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Screenshots & Images
 
 Below are some images from the app (located in `src/assets/`):
@@ -97,4 +98,6 @@ Frontend/
 ## Author
 Ritesh Jadhav
 
+=======
+>>>>>>> 4de3c3cb2e0feb2b3cfa4661728aec488bd047cf
 
