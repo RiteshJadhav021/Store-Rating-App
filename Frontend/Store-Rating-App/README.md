@@ -1,12 +1,100 @@
+# Screenshots & Images
+
+Below are some images from the app (located in `src/assets/`):
+
+### Admin Dashboard
+![Admin Dashboard](src/assets/admin.png)
+
+### Change Password Page
+![Change Password](src/assets/changepass.png)
+
+### Login Page
+![Login Page](src/assets/loginPage.png)
+
+### Store Page
+![Store](src/assets/store.png)
+
+### User Dashboard
+![User Dashboard](src/assets/userdashboard.png)
+
+### Signup Page
+![Image](src/assets/image.png)
+![React Logo](src/assets/react.svg)
 # React + Vite
+# Store Rating App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Store Rating App is a full-stack web application for rating stores and managing users, built with React (frontend), Express (backend), and MySQL (database).
 
-Currently, two official plugins are available:
+## Features
+- User registration and login
+- Admin dashboard with user, store, and rating analytics
+- Change password functionality for users and owner
+- Rate stores and view ratings
+- Responsive, modern UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
 
-## Expanding the ESLint configuration
+```
+Backend/
+  src/
+	 index.js        # Express backend API
+	 db.js           # MySQL connection
+  package.json      # Backend dependencies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend/
+  Store-Rating-App/
+	 src/
+		App.jsx       # Main React app
+		pages/        # All page components (Login, Signup, Dashboards, etc.)
+		assets/       # Images and icons
+	 public/
+	 package.json    # Frontend dependencies
+	 vite.config.js  # Vite config
+```
+
+## Setup Instructions
+
+### Backend
+1. Install dependencies:
+	```bash
+	cd Backend
+	npm install
+	```
+2. Configure MySQL database in `src/db.js` or with environment variables:
+	- DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
+3. Start backend server:
+	```bash
+	npm run dev
+	```
+
+### Frontend
+1. Install dependencies:
+	```bash
+	cd Frontend/Store-Rating-App
+	npm install
+	```
+2. Start frontend server:
+	```bash
+	npm run dev
+	```
+
+## Usage
+- Register as a user with email
+- Login as admin (`admin@store.com` / `Admin@123`), user, or owner
+- Admin dashboard: view counts and lists
+- Store owner dashboard: view ratings and users
+- Change password from dashboard
+- Rate stores and view ratings
+
+## Technologies Used
+- React
+- Express
+- MySQL
+- Vite
+- Tailwind CSS
+
+## Author
+Ritesh Jadhav
+
+
