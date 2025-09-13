@@ -7,6 +7,9 @@ const ChangePassword = () => {
   const email = localStorage.getItem('userEmail'); // Get user email from localStorage
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState('');
+  const [showOld, setShowOld] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const validate = (fields) => {
     const errors = {};
@@ -68,17 +71,92 @@ const ChangePassword = () => {
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-700">Old Password</label>
-            <input type="password" name="oldPassword" value={fields.oldPassword} onChange={handleChange} className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <div className="relative">
+              <input
+                type={showOld ? "text" : "password"}
+                name="oldPassword"
+                value={fields.oldPassword}
+                onChange={handleChange}
+                className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500 hover:text-blue-600 focus:outline-none"
+                onClick={() => setShowOld((prev) => !prev)}
+                tabIndex={-1}
+                aria-label={showOld ? "Hide password" : "Show password"}
+              >
+                {showOld ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M9.88 9.88A3 3 0 0012 15a3 3 0 002.12-5.12M15 12a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3m0 0a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" />
+                  </svg>
+                )}
+              </button>
+            </div>
             {errors.oldPassword && <div className="text-red-600 text-xs mt-1">{errors.oldPassword}</div>}
           </div>
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-700">New Password</label>
-            <input type="password" name="newPassword" value={fields.newPassword} onChange={handleChange} className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <div className="relative">
+              <input
+                type={showNew ? "text" : "password"}
+                name="newPassword"
+                value={fields.newPassword}
+                onChange={handleChange}
+                className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500 hover:text-blue-600 focus:outline-none"
+                onClick={() => setShowNew((prev) => !prev)}
+                tabIndex={-1}
+                aria-label={showNew ? "Hide password" : "Show password"}
+              >
+                {showNew ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M9.88 9.88A3 3 0 0012 15a3 3 0 002.12-5.12M15 12a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3m0 0a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" />
+                  </svg>
+                )}
+              </button>
+            </div>
             {errors.newPassword && <div className="text-red-600 text-xs mt-1">{errors.newPassword}</div>}
           </div>
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-700">Confirm New Password</label>
-            <input type="password" name="confirmPassword" value={fields.confirmPassword} onChange={handleChange} className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <div className="relative">
+              <input
+                type={showConfirm ? "text" : "password"}
+                name="confirmPassword"
+                value={fields.confirmPassword}
+                onChange={handleChange}
+                className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500 hover:text-blue-600 focus:outline-none"
+                onClick={() => setShowConfirm((prev) => !prev)}
+                tabIndex={-1}
+                aria-label={showConfirm ? "Hide password" : "Show password"}
+              >
+                {showConfirm ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M9.88 9.88A3 3 0 0012 15a3 3 0 002.12-5.12M15 12a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3m0 0a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" />
+                  </svg>
+                )}
+              </button>
+            </div>
             {errors.confirmPassword && <div className="text-red-600 text-xs mt-1">{errors.confirmPassword}</div>}
           </div>
           {errors.api && <div className="text-red-600 text-sm mb-2 text-center">{errors.api}</div>}

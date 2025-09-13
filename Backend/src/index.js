@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // test route
 app.get('/api', (req, res) => {
   res.json({ message: 'Backend is running!' });
@@ -20,6 +19,31 @@ app.post('/register', (req, res) => {
   if (!name || !email || !password || !role) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
+  // Only allow one store owner with fixed email
+  if (role === 'owner' && email !== 'owner@store.com') {
+    return res.status(403).json({ error: 'Store owner email must be owner@store.com' });
+  }
+  if (role === 'owner') {
+    // Check if owner already exists
+    db.query('SELECT * FROM users WHERE email = ? AND role = ?', [email, 'owner'], (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: 'Database error', details: err });
+      }
+      if (results.length > 0) {
+        return res.status(409).json({ error: 'Store owner already exists' });
+      }
+      // Register owner
+      const sql = `INSERT INTO users (name, email, password, address, role) VALUES (?, ?, ?, ?, ?)`;
+      db.query(sql, [name, email, password, address, role], (err2, result) => {
+        if (err2) {
+          return res.status(500).json({ error: 'Database error', details: err2 });
+        }
+        res.status(201).json({ message: 'Store owner registered successfully', userId: result.insertId });
+      });
+    });
+    return;
+  }
+  // Register normal user
   const sql = `INSERT INTO users (name, email, password, address, role) VALUES (?, ?, ?, ?, ?)`;
   db.query(sql, [name, email, password, address, role], (err, result) => {
     if (err) {
@@ -105,6 +129,16 @@ app.post('/stores', (req, res) => {
 });
 
 // Get all stores (for user dashboard)
+app.get('/stores', (req, res) => {
+  const sql = 'SELECT * FROM stores';
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error', details: err });
+    }
+    res.json({ stores: results });
+  });
+});
+
 // Get total user count
 app.get('/users/count', (req, res) => {
   const sql = 'SELECT COUNT(*) AS count FROM users';
@@ -146,15 +180,6 @@ app.get('/users', (req, res) => {
       return res.status(500).json({ error: 'Database error', details: err });
     }
     res.json({ users: results });
-  });
-});
-app.get('/stores', (req, res) => {
-  const sql = 'SELECT * FROM stores';
-  db.query(sql, (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: 'Database error', details: err });
-    }
-    res.json({ stores: results });
   });
 });
 

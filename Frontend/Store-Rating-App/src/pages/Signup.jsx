@@ -43,6 +43,7 @@ export default function Signup() {
   const [fields, setFields] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -110,7 +111,31 @@ export default function Signup() {
           <div className="mb-4">
             <label className="block mb-1 font-semibold text-gray-700">Password</label>
             <div className="relative">
-              <input type="password" name="password" placeholder="Enter Password" value={fields.password} onChange={handleChange} className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow shadow-sm" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter Password"
+                value={fields.password}
+                onChange={handleChange}
+                className="w-full border border-gray-300 bg-gray-50 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow shadow-sm pr-10"
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-500 hover:text-blue-600 focus:outline-none"
+                onClick={() => setShowPassword((prev) => !prev)}
+                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M9.88 9.88A3 3 0 0012 15a3 3 0 002.12-5.12M15 12a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3m0 0a3 3 0 00-3-3m0 0a3 3 0 00-3 3m0 0a3 3 0 003 3m0 0a3 3 0 003-3" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8z" />
+                  </svg>
+                )}
+              </button>
             </div>
             {errors.password && <div className="text-red-600 text-xs mt-1 px-2 ">{errors.password}</div>}
           </div>
